@@ -1,0 +1,52 @@
+.container {
+  padding: 0rem 11rem 0 11rem;
+}
+.label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  height: 2rem;
+  padding-top: 2.5rem;
+  width:11rem;
+}
+.step {
+  position: relative;
+}
+.content {
+  position: absolute;
+  top: -2.8rem;
+  left: 2.4rem;
+}
+.dot {
+  background: #374151;
+  border-radius: 50%;
+  width: 2px;
+  height: 2px;
+  margin-bottom: 0.7rem;
+}
+.dots {
+  margin-left: 5px;
+}
+.distance {
+  position: absolute;
+  top: 0rem;
+  left: -13rem;
+  text-align: center;
+  border: 1px solid #7786D2;
+  border-radius: 4px;
+  min-width: 9rem;
+  font-size: 1.4rem;
+  color: #7786D2;
+  font-weight: 500;
+  background-color: white;
+}
+.distance::before, .distance::after {
+  content: ''; 
+  position: absolute;
+  right: -9px; top: 7px;
+  border: 4px solid transparent;
+  border-left: 5px solid #7786D2;
+ }
+ .distance::after {
+  border-left: 5px solid white;
+  right: -8px; 
+ }

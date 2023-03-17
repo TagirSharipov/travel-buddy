@@ -1,0 +1,32 @@
+.submit {
+  flex: 1 1 100%;
+  text-align: center;
+}
+.container {
+  display: flex;
+  column-gap: 1rem;
+  row-gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1.5rem;
+}
+
+.sideControls {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: flex-start;
+  justify-items: flex-start;
+  row-gap: 2rem;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .sideControls {
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    flex-basis: 100%;
+    max-width: 35rem;
+    padding-left: 7rem;
+  }
+}

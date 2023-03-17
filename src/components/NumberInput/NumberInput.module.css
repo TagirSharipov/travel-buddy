@@ -1,0 +1,35 @@
+.wrapper {
+  font-size: 1.2rem;
+  position: relative;
+  width: 9rem;
+}
+
+.label {
+  display: block;
+}
+
+.input {
+  border: 1px solid #E5E7EB;
+  background-color: white;
+  border-radius: .6rem;
+  height: 3.2rem;
+  padding: .8rem 3.2rem .8rem 3.2rem;
+  width: 9rem;
+  text-align: center;
+}
+.button, .rightButton {
+  position: absolute;
+  background:#C7D1F4;
+  border: 1px solid #E5E7EB;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  width: 2.2rem;
+  height: 2.2rem;
+  bottom: 5px;
+  left: 1rem;
+}
+.rightButton {
+  left: auto;
+  right: 1rem;
+}

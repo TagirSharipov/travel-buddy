@@ -1,0 +1,20 @@
+.submit {
+  flex-basis: 100%;
+  text-align: center;
+}
+.highlight {
+  color: #7786D2;
+  font-weight: 700;
+}
+.info {
+  font-size: 1.2rem;
+  
+  font-weight: 500;
+  line-height: 2rem;
+  text-align: center;
+  margin: 2rem 0 2.5rem;
+}
+
+.loading {
+  padding: 10rem 0;
+}

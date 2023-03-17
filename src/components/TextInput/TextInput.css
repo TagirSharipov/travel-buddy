@@ -1,0 +1,26 @@
+.input {
+  border: 1px solid #E5E7EB;
+  background-color: white;
+  border-radius: .6rem;
+  height: 3.2rem;
+  padding: .8rem 1.2rem .8rem 1rem;
+  min-width: 23rem;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.6rem;
+  gap: 2px;
+  position: relative;
+  margin-bottom: 2rem;
+}
+.error {
+  color: red;
+  position: absolute;
+  top: 5rem;
+}
+.input.red {
+  border-color: red;
+}

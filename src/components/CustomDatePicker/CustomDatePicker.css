@@ -1,0 +1,82 @@
+.react-datepicker__input-container input {
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  border-radius: 0.6rem;
+  height: 3.2rem;
+  padding: 0.8rem 1.2rem 0.8rem 1rem;
+  width: 9rem;
+}
+
+.react-datepicker {
+  font-family: 'Inter';
+  font-size: 1.4rem;
+  font-weight: 400;
+  background-color: #fff;
+  border-radius: 8px;
+  color: #374151;
+  border: 1px solid #c7d1f4;
+}
+
+.react-datepicker__header {
+  background-color: initial;
+  border: none;
+  padding: 0;
+}
+.react-datepicker__header select {
+  border: 1px solid #c7d1f4;
+  border-radius: 4px;
+  background: #c7d1f4;
+}
+
+.react-datepicker__header select option {
+  border: 1px solid #c7d1f4;
+  background: white;
+}
+.react-datepicker__day-names {
+  font-weight: 700;
+}
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  margin: 0 5px;
+}
+.react-datepicker__header--custom div {
+  gap: 1rem;
+}
+.react-datepicker__header--custom button {
+  border-radius: 50%;
+  border: 0px;
+  width: 1.6rem;
+  height: 1.6rem;
+  background-color: transparent;
+  color: transparent;
+  background-image: url('../../../public/left.png');
+  margin-top: 1px;
+}
+.labelDate {
+  font-size: 1.2rem;
+}
+
+.react-datepicker__header--custom select ~ button {
+  background-image: url('../../../public/right.png') !important;
+}
+
+.react-datepicker__day--selected {
+  border-radius: 50%;
+  background-color: #c7d1f4;
+  color: inherit;
+  font-weight: inherit;
+  line-height: 1.9rem;
+  width: 1.9rem;
+}
+
+.react-datepicker__triangle::before,
+.react-datepicker__triangle::after {
+  top: -1px;
+  border-bottom-color: #c7d1f4 !important;
+  left: -38px !important;
+}
+
+.react-datepicker__day--outside-month {
+  color: #e5e7eb;
+}

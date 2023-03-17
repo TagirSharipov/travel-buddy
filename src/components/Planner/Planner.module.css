@@ -1,0 +1,28 @@
+.container {
+  padding: 3rem 30rem 0 0;
+  max-width: 35rem;
+}
+
+.dot {
+  background: #374151;
+  border-radius: 50%;
+  width: 2px;
+  height: 2px;
+  margin-bottom: 0.7rem;
+}
+.dots {
+  margin-left: 5px;
+}
+.step {
+  position: relative;
+}
+.add {
+  position: absolute;
+  left: 5rem;
+  top: 3rem;
+}
+.content {
+  position: absolute;
+  top: -2.8rem;
+  left: 5rem;
+}
