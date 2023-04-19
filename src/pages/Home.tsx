@@ -1,10 +1,13 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
+import { useAppDispatch } from '../hooks/redux-hooks';
 import { useState} from 'react';
 import style from "./Home.module.css";
 import Planner from "../components/Planner/Planner";
 import NumberInput from "../components/NumberInput/NumberInput";
 import CustomDatePicker from "../components/CustomDatePicker/CustomDatePicker";
 import Button from "../components/Button/Button";
+import { reset } from '../store/';
+
 
 function Home() {
   const [searchParams] = useSearchParams();
@@ -12,6 +15,8 @@ function Home() {
   
   const [validSteps, setValidSteps] = useState([...trip.validCities]);
   const navigate = useNavigate();
+  
+  const dispatch = useAppDispatch();
 
   function updateParam(url = '') {
     navigate(trip.getQueryParams(url));
@@ -35,14 +40,16 @@ function Home() {
         validateStep={updateParams(trip.validateCity.bind(trip))}
       />
     <div className={style.sideControls}>
-        <NumberInput initialValue={trip.count} label="Passengers" setValue={v => updateParam(v.toString())}/>
-        <CustomDatePicker handler={v => updateParam(v.toISOString())} date={trip.date}/>
+        <NumberInput initialValue={trip.count} label="Passengers" setValue={v => {trip.setCount(v); updateParam();}}/>
+        <CustomDatePicker handler={v => {trip.setDate(v); updateParam();}} date={trip.date}/>
     </div>
     <div className={style.submit}>
       <Button 
         disabled={disabled}
-        onClick={() => navigate(trip.getQueryParams('/result'))}
-      >
+        onClick={() => {
+          dispatch(reset()); // to ensure that no previous error left in the state
+          navigate(trip.getQueryParams('/result'));
+        }}>
         Submit
       </Button>
     </div>
