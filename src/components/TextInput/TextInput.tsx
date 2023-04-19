@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import useInput from "../../hooks/use-input";
 import ItemList from "./ItemList";
-import './TextInput.css';
 import {loadCities} from "../../api";
+import * as S from "./styles";
 
 const TextInput: React.FC<{ label: string, value?: string, handler: (v: string) => void, validateStep: (v: boolean) => void}> = (props) => {
   const [open, setOpen] = useState(false);
@@ -53,11 +53,12 @@ const TextInput: React.FC<{ label: string, value?: string, handler: (v: string) 
     setValue(city);
   };
 
+
   return (
-    <div className="wrapper" ref={ref}>
-      <label htmlFor="input" className="label">{props.label}</label>
-      <input
-        id="input"
+    <S.Wrapper ref={ref}>
+      <label htmlFor={props.label}>{props.label}</label>
+      <S.Input
+        id={props.label}
         type="text"
         value={value}
         onChange={e => {
@@ -69,13 +70,15 @@ const TextInput: React.FC<{ label: string, value?: string, handler: (v: string) 
           if (isValid) chooseCity(value) 
           else props.validateStep(isValid);
         }}
-        className={`${"input"}${hasError && !open ? " red":""}`}
+        hasError={hasError && !open }
         autoComplete="off"
       />
-      {(hasError && !open) && <div className="error">You must choose the {props.label.toLowerCase()}</div>}
+      {(hasError && !open) && <S.ErrorMessage>You must choose the {props.label.toLowerCase()}</S.ErrorMessage>}
       {open && <ItemList loading={loading} items={cities} handler={chooseCity}/>}
-    </div>
+    </S.Wrapper>
   );
 };
+
+
 
 export default TextInput;

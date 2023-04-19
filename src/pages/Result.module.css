@@ -3,7 +3,7 @@
   text-align: center;
 }
 .highlight {
-  color: #7786D2;
+  color: var(--blue);
   font-weight: 700;
 }
 .info {

@@ -1,6 +1,19 @@
-import style from './DeleteButton.module.css';
+import styled from 'styled-components';
 
-const DeleteButton: React.FC<{handler: () => void}> = (props) => {
-  return <button className={style.button} onClick={props.handler}><img src='/delete.png' alt="delete"/></button>
-}
+const Button = styled.button`
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  top: 2.6rem;
+  right: -3rem;
+  cursor: pointer;
+  font-size: 1.2re;
+`;
+
+const DeleteButton = (props: {onClick: () => void}) => (
+  <Button {...props}>
+    <img src='/delete.png' alt="delete"/>
+  </Button>
+);
+
 export default DeleteButton;

@@ -1,7 +1,7 @@
-import style from './ItemList.module.css';
+import * as S from './styles';
 
 function LoadingList() {
-  return <>{Array.from("1234567").map(i => <button className={`${style.button} ${style.loading}`} key={i} />)}</>
+  return <>{Array.from("1234567").map(i => <S.LoadingButton key={i} />)}</>
 }
 
 const ItemList: React.FC<{ 
@@ -12,11 +12,17 @@ const ItemList: React.FC<{
 
   if (props.items.length === 0) return null;
  
-  return <div className={style.wrapper}>
-    {props.loading ? <LoadingList />
-    : props.items.map((c) => <button className={style.button} key={c} onClick={() => props.handler(c)}>{c}</button>)
+  return <S.Container>
+    {props.loading ? (
+        <LoadingList />
+      )
+      : props.items.map((c) => (
+          <S.ListButton key={c} onClick={() => props.handler(c)}>
+            {c}
+          </S.ListButton>)
+        )
     }
-  </div>
+  </S.Container>
 }
 
 export default ItemList;

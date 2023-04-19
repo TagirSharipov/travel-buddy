@@ -1,36 +1,45 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from '../hooks/redux-hooks';
+import { useEffect } from 'react';
 import Button from "../components/Button/Button";
-import style from "./Result.module.css";
 import Trip from "../components/Trip/Trip";
-import { calcRoute } from "../api";
-import { makeURL } from "../utils";
+import styled from 'styled-components';
+import { calcTripDistances, selectTripDistances, selectLoading, selectTotalDistance,selectError } from '../store/';
+
+const Info = styled.div`
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 2rem;
+  text-align: center;
+  margin: 2rem 0 2.5rem;
+`;
+const Highlight = styled.span`
+  color: var(--blue);
+  font-weight: 700;
+`;
+const Loading = styled.div`
+  padding: 10rem 0;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 function Result() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();  
-  const [distances, setDistances] = useState<string[][]>([[]]);
-  const [total, setTotal] = useState<number | undefined>();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  if (error) throw new Error();
+  const error = useAppSelector(selectError);
+  const dispatch = useAppDispatch();
+  const loading = useAppSelector(selectLoading);
+  const distances = useAppSelector(selectTripDistances);
+  const total = useAppSelector(selectTotalDistance);
 
+  if (error) throw new Error();
   
   useEffect(() => {
-    async function callEndpoint() {
-      setLoading(true);
-      try {
-        const str = searchParams.get("params") ?? '';
-        const [cities, acc] = await calcRoute(str);
-        setLoading(false);
-        setDistances(cities);
-        setTotal(acc);
-      } catch (e) {
-        setError(true);
-      }
-    }
-    callEndpoint();
-  }, [searchParams])
+    dispatch(calcTripDistances((searchParams.get("params") ?? '').split(',')));
+  }, [searchParams, dispatch])
 
   let options: Intl.DateTimeFormatOptions = {
     year: "numeric",
@@ -38,29 +47,23 @@ function Result() {
     day: "numeric",
   };
   
-  if (loading) return <div className={style.loading}>Calculating the trip...</div>;
+  if (loading) return <Loading>Calculating the trip...</Loading>;
 
-  return <div className={style.container}>
-    <div className="stepper">
+  return <Container>
       <Trip distances={distances} />
-    </div>
-    <div className={style.info}>
-      {total && <div className="total">
-        <span className={style.highlight}>{(total / 1000).toFixed(2)}</span> km is total distance
-      </div>
-      }
-      <div className={style.passengers}>
-         <span className={style.highlight}>{searchParams.get("count")}</span> passengers
-      </div>
-      <div className="date">
-         <span className={style.highlight}>{new Intl.DateTimeFormat('en-US', options).format(new Date(searchParams.get("date") ?? new Date()))}</span>
-      </div>
-    </div>
-    <div className={style.submit}>
-      <Button handler={() => navigate(makeURL(searchParams.get("params") ?? '', searchParams.get("count") ?? '', searchParams.get("date") ?? ''))}>Back</Button>
-    </div>
-  </div>
+      <Info>
+        {total && <div>
+          <Highlight>{(total / 1000).toFixed(2)}</Highlight> km is total distance
+        </div>
+        }
+        <div>
+          <Highlight>{searchParams.get("count")}</Highlight> passengers
+        </div>
+        <div>
+          <Highlight>{new Intl.DateTimeFormat('en-US', options).format(new Date(searchParams.get("date") ?? new Date()))}</Highlight>
+        </div>
+    </Info>
+    <Button onClick={() => navigate(`/?params=${searchParams.get("params")}&count=${searchParams.get("count")}&date=${searchParams.get("date")}&valid=${searchParams.get("valid")}`)}>Back</Button>
+  </Container>
 }
-
-
 export default Result;

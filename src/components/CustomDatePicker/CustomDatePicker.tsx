@@ -6,7 +6,7 @@ import './CustomDatePicker.css';
 
 const CustomDatePicker: React.FC<{date: Date, handler: (date: Date) => void}> = (props) => {
   const [startDate, setStartDate] = useState(props.date);
-  const years = Array.from('0123456789', s => Number(s) + 2023);
+  const years = Array.from({length: 10}, (_s, i) => i + 2023);
   const months = [
     "JAN",
     "FEB",
@@ -27,7 +27,7 @@ const CustomDatePicker: React.FC<{date: Date, handler: (date: Date) => void}> = 
     props.handler(date);
   }
   return (
-    <>
+    <div>
       <label className="labelDate">Date</label>
       <DatePicker
         calendarStartDay={1}
@@ -74,9 +74,6 @@ const CustomDatePicker: React.FC<{date: Date, handler: (date: Date) => void}> = 
                 </option>
               ))}
             </select>
-
-
-
             <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
               {">"}
             </button>
@@ -85,7 +82,7 @@ const CustomDatePicker: React.FC<{date: Date, handler: (date: Date) => void}> = 
         selected={startDate}
         onChange={(date: Date) => updateDate(date)}
       />
-    </>
+    </div>
   );
 };
 

@@ -24,12 +24,35 @@ export async function calcRoute(str: string): Promise<[string[][], number]> {
     if (!a || city === 'Dijon') throw new Error('City not found');
     return a;
   });
+
   const cities = [[arr[0][0], '']];
   let acc = 0;
+  
   for (let i = 1; i < arr.length; i++) {
     const dist = (haversine({lat: arr[i-1][1], lng: arr[i-1][2]},{lat: arr[i][1], lng: arr[i][2]}));
     acc = acc + dist;
     cities.push([arr[i][0], (dist / 1000).toFixed(2) + ' km']);
   }
   return [cities, acc];
+}
+
+export async function calcDistances(params: string[]): Promise<{data: [string[][], number]}> {
+  await sleep();
+
+  const arr = params.map( city => {
+    const a = citiesList.find( c => c[0] === city);
+    if (!a || city === 'Dijon') throw new Error('City not found');
+    return a;
+  });
+
+  const cities = [[arr[0][0], '']];
+  let acc = 0;
+  
+  for (let i = 1; i < arr.length; i++) {
+    const dist = (haversine({lat: arr[i-1][1], lng: arr[i-1][2]},{lat: arr[i][1], lng: arr[i][2]}));
+    acc = acc + dist;
+    cities.push([arr[i][0], (dist / 1000).toFixed(2) + ' km']);
+  }
+
+  return {data: [cities, acc]};
 }

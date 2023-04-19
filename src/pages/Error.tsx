@@ -1,13 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button/Button";
-import style from './Error.module.css';
+import styled from 'styled-components';
+
+const Message = styled.div`
+  margin: 5rem auto;
+  font-size: 1.2;
+  font-weight: 700;
+  color: var(--blue);
+`;
+
 function Error() {
   const navigate = useNavigate();  
   return <>
-      <div className={style.error}>Oops. Something went wrong!</div>
-      <div className={style.submit}>
-      <Button handler={() => navigate(-1)}>Back</Button>
-    </div>
+      <Message>Oops. Something went wrong!</Message>
+      <Button onClick={() => navigate(-1)}>Back</Button>
   </>;
 }
 

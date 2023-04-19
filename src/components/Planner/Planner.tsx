@@ -7,24 +7,24 @@ import Step from "../Stepper/Step";
 const Planner: React.FC<{
   steps: string[], 
   deleteStep: (i:number) => void,
-  chooseCity: (i:number, v:string) => void,
+  chooseValue: (i:number, v:string) => void,
   addStep: () => void,
   validateStep: (v: boolean, i: number) => void,
 }> = (props) => {
-  const {steps, deleteStep, validateStep, chooseCity, addStep} = props;
+  const {steps, deleteStep, validateStep, chooseValue, addStep} = props;
 
   return <div className={style.container}>
     {
-    steps.map( (city, i) =>
-      <Step key={`${city}${i}`} lastStep={i === steps.length - 1} separator={<Separator/>}>
+    steps.map( (value, i) =>
+      <Step key={`${value}${i}`} lastStep={i === steps.length - 1} separator={<Separator/>}>
         <div className={style.content}>
           <TextInput
             label={`City of ${i === 0 ? 'origin':'destination'}`}
-            value={city}
+            value={value}
             validateStep={(v) => validateStep(v,i)}
-            handler={(v: string) => chooseCity(i, v)}
+            handler={(v: string) => chooseValue(i, v)}
           />
-          {(steps.length > 2 && i > 0) && <DeleteButton handler={() => deleteStep(i)} />}
+          {(steps.length > 2 && i > 0) && <DeleteButton onClick={() => deleteStep(i)} />}
         </div>
       </Step>
     )}

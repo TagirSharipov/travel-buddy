@@ -1,5 +1,5 @@
 .react-datepicker__input-container input {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--grey);
   background-color: white;
   border-radius: 0.6rem;
   height: 3.2rem;
@@ -11,10 +11,10 @@
   font-family: 'Inter';
   font-size: 1.4rem;
   font-weight: 400;
-  background-color: #fff;
+  background-color: white;
   border-radius: 8px;
-  color: #374151;
-  border: 1px solid #c7d1f4;
+  color: var(--darkGrey);
+  border: 1px solid var(--lightBlue);
 }
 
 .react-datepicker__header {
@@ -23,13 +23,13 @@
   padding: 0;
 }
 .react-datepicker__header select {
-  border: 1px solid #c7d1f4;
+  border: 1px solid var(--lightBlue);
   border-radius: 4px;
-  background: #c7d1f4;
+  background: var(--lightBlue);
 }
 
 .react-datepicker__header select option {
-  border: 1px solid #c7d1f4;
+  border: 1px solid var(--lightBlue);
   background: white;
 }
 .react-datepicker__day-names {
@@ -63,7 +63,7 @@
 
 .react-datepicker__day--selected {
   border-radius: 50%;
-  background-color: #c7d1f4;
+  background-color: var(--lightBlue);
   color: inherit;
   font-weight: inherit;
   line-height: 1.9rem;
@@ -73,10 +73,10 @@
 .react-datepicker__triangle::before,
 .react-datepicker__triangle::after {
   top: -1px;
-  border-bottom-color: #c7d1f4 !important;
+  border-bottom-color: var(--lightBlue) !important;
   left: -38px !important;
 }
 
 .react-datepicker__day--outside-month {
-  color: #e5e7eb;
+  color: var(--grey);
 }
