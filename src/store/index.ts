@@ -1,10 +1,7 @@
-import { configureStore, createSlice, ThunkAction, Action, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { configureStore, createSlice, ThunkAction, Action, createAsyncThunk } from '@reduxjs/toolkit';
 import { calcDistances } from '../api'
 
 export interface TravelState {
-  peopleCount: number;
-  date: string;
-  cities: string[];
   distances: string[][];
   loading: false | true;
   totalDistance: number | undefined;
@@ -12,9 +9,6 @@ export interface TravelState {
 };
 
 const initialState: TravelState = {
-  peopleCount: 1,
-  date: '',
-  cities: [],
   distances: [[]],
   totalDistance: undefined,
   loading: false,
@@ -34,9 +28,10 @@ export const tripSlice = createSlice({
   name: 'cities', 
   initialState, 
   reducers: {
-    deleteCity: state => state,
-    addCity: state => state,
-    setCities: (state, action: PayloadAction<string []> ) => {state.cities = action.payload},
+    reset: () => {
+      console.log('d')
+      return initialState;
+    }
   },
   extraReducers: builder => {
     builder.addCase(calcTripDistances.pending, (state) => {
@@ -59,6 +54,7 @@ export const selectTotalDistance = (state: RootState) => state.totalDistance;
 export const selectTripDistances = (state: RootState) => state.distances;
 export const selectLoading = (state: RootState) => state.loading;
 export const selectError = (state: RootState) => state.error;
+export const { reset } = tripSlice.actions;
 
 const store = configureStore({ reducer: tripSlice.reducer });
 
