@@ -1,6 +1,6 @@
 # Travel Buddy - React App
 
-Travel Buddy is a web application created using TypeScript and React that allows users to search for travel destinations and calculate the distances between them.
+Travel Buddy is a web application created as a coding task using TypeScript and React that allows users to search for travel destinations and calculate the distances between them.
 
 ## The Task
 
